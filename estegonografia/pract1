@@ -1,0 +1,12 @@
+1.-
+crunch 2 3 abcdfghijklmnopqrstuvwxyz
+
+2.-
+crunch 2 4 abc123
+
+3.-
+crunch 2 3 -o Dicc.txt -p 123456
+
+4.-
+crunch 2 3 -o Dicc2.txt -p 1234abc
+

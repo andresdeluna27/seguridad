@@ -1,0 +1,41 @@
+1.-
+Openssl> version
+
+2.-
+Determina la velocidad de creacion de llave para blowfish
+Determina la velocidad de creacion de llave para md5
+Determina la velocidad de creacion de llave para sha
+
+3.-
+Verifica si un numero dado es primo
+
+4.-
+Genera contraseñas hash
+
+5.-
+openssl dgst -md5 -hex uaa.txt
+openssl dgst -sha256 -hex uaa.txt
+
+6.-
+openssl enc -aes-256-cbc -in pract1 -base64 -md sha1  > llaveRSA.txt
+
+7.-
+openssl des -in decimo.txt -pass:uaa -out octavoEncriptado.txt
+
+openssl des -d -in  octavoEncriptado.txt -pass:uaa -out decimo.txt
+
+8.-
+openssl genrsa -out iscRSA1024.key 1024
+
+9.-
+openssl genrsa -aes128 -passout pass:hola -out secreto.key 1024
+	openssl rsa -in secreto.key -passin pass:dog -pubout -out publica.key
+	openssl dgst -sha256 -sign secreto.key -out /tmp/sign.sha256 seguridad.txt
+	openssl base64 -in /tmp/sign.sha256 -out binario.txt
+	a. ¿cómo realizaría la verificación del archivo firmado anteriormente?
+		openssl dgst -sha256 -verify publica.key -signature /tmp/sign.sha256 seguridad.txt
+
+10.-
+
+openssl genrsa -out private.key 1024
+openssl rsa -in private.key -out public.key -outform PEM -pubout
