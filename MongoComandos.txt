@@ -1,0 +1,29 @@
+show dbs; //muestra bases
+
+use isc8c; // cambia de base
+
+db.alumno.find({nombre:"paco"}).pretty(); //busqueda con parametros
+
+db.alumno.insert([{nombre:"Andres",apat:"de Luna"},{nombre:"Angie",apat:"Ramos"},{nombre:"Ramon",amat:"Chavez"}]); //inserciones multiples
+
+db.alumno.find().pretty(); //busqueda con formato
+
+db.alumno.count(); //conteo
+
+db.alumno.update({nombre:"Ramon"},{$set:{apat:"Mendez"}}); //modifica solo el primero que encuentra
+
+db.alumno.updateMany({nombre:"Ramon"},{$set:{apat:"Three"}}); //modifica todos
+
+db.alumno.updateMany({nombre:"Chuy",edad:60},{$set:{edad:37}}); 
+
+db.alumno.remove({nombre:"dos"}); //borrar, si se quiere borrar todo se pone de parametro llaves {}
+
+db.alumno.find(ObjectId("5af0b9afc2be053187e3027c")); //busqueda por ObjectId
+
+db.alumno.find({_id:ObjectId("5af0b9afc2be053187e3027c")});
+
+db.alumno.save({nombre:"hugo",materia:[{nombre:"BDD",desc:"primera hora",like:100000},{nombre:"Seguridad",desc:"tercer hora",like:50000}]}); //insercion de varios campos en uno solo
+
+
+db.alumno.save({nombre:"Elena",materia:[{nombre:"matematicas",descripcion:"primera hora",
+temas:[{nombre:"unidad 1",paginas:10}]},{nombre:"espanol",descripcion:"segunda hora",temas:[{nombre:"unidad ix",paginas:100}]}],edad:15});
