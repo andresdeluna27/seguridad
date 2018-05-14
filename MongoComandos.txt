@@ -26,4 +26,86 @@ db.alumno.save({nombre:"hugo",materia:[{nombre:"BDD",desc:"primera hora",like:10
 
 
 db.alumno.save({nombre:"Elena",materia:[{nombre:"matematicas",descripcion:"primera hora",
-temas:[{nombre:"unidad 1",paginas:10}]},{nombre:"espanol",descripcion:"segunda hora",temas:[{nombre:"unidad ix",paginas:100}]}],edad:15});
+temas:[{nombre:"unidad 1",paginas:10}]},{nombre:"espanol",descripcion:"segunda hora",temas:[{nombre:"unidad ix",paginas:100}]}],edad:15});   //insercion de varios niveles
+
+var cursor=db.alumno.find(); //se crea un cursor
+
+while(cursor.hasNext()){
+printjson(cursor.next());
+}        //para imprimir el cursor
+
+db.alumno.find({},{nombre:1}); //muestra nombres y objId
+
+db.alumno.find({},{"_id":0,nombre:1}); //solo muestra nombre
+
+db.alumno.find({},{"_id":0,nombre:1}).sort({"nombre":1}); //ordena por nombre
+
+db.alumno.find({},{"_id":0,nombre:1}).sort({"nombre":1}).count(); //cuenta
+
+db.alumno.find({nombre:"paco"},{"_id":0,nombre:1}).sort({"nombre":1});  //en este se ve que las primeras llaves son condiciones de busqueda y el segundo los campos a mostrar
+
+db.alumno.find( { $or:[{nombre:"Angie"},{apat:"dos"}]}).pretty(); //queries con or
+
+db.alumno.find( { $or:[{nombre:"Angie"},{apat:"martinez"}]},{nombre:1}).pretty();
+
+
+function conteo(documento){
+	if(documento.count()>50){
+		print("muchos");
+	}else{
+		print("pocos");
+	}
+};
+//declaracion de funcion
+
+var cursor=db.alumno.find();
+
+conteo(cursor); //uso de la funcion
+
+db.alumno.find({},{nombre:1});
+
+db.alumno.find({},{nombre:1,edad:1});
+
+db.alumno.find({nombre:"paco",edad:25},{nombre:1,edad:1});
+
+$lt:  //es lower than
+
+db.alumno.find({nombre:"paco",edad:{$lt:30}},{nombre:1,edad:1}); //aplicando el "lower than"
+
+$lte //lower than equal
+
+$gt //grater than
+
+$gte //grater than equal
+
+$ne //not equals
+
+db.alumno.find({edad:{$gt:18,$lt:60}},{nombre:1,edad:1}); //edad mayor a 18 y menor a 60
+
+
+db.alumno.find({$or:[{edad:{$gt:18}},{edad:{$lt:60}}]},{nombre:1,edad:1}); //edad mayor a 18 o menor a 60
+
+var cursor=db.alumno.find({edad:{$lt:30}}); //para usar la funcion anterior y ver si son pocos los de 30 anios
+
+conteo(cursor);
+
+db.alumno.find({$or:[{edad:{$gt:18}},{edad:{$lt:60}}]},{nombre:1,edad:1}).pretty().sort({nombre:1});
+
+db.alumno.find({$or:[{edad:{$gt:18}},{edad:{$lt:60}}]},{nombre:1,edad:1}).pretty().sort({nombre:1}).limit(1); //muestra solo 1
+
+db.alumno.find({$or:[{edad:{$gt:18}},{edad:{$lt:60}}]},{nombre:1,edad:1}).pretty().sort({nombre:1}).limit(1).skip(2); //aqui skip salta 2
+
+db.alumno.find({$or:[{edad:{$gt:18}},{edad:{$lt:60}}]},{_id:0,nombre:1,edad:1}).pretty().sort({nombre:1}).limit(1).skip(2);
+
+
+
+
+
+
+
+
+
+
+
+fin doc
+
