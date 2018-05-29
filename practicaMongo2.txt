@@ -1,0 +1,38 @@
+{Codigo:100,Nombre_prod:"arena",Unidad_medida:["kilogramo"],cantidad:50,precio:30,costo:20,categorias:["papeleria","jardineria"]
+}
+[
+{Codigo:101,Nombre_prod:"pegamento",Unidad_medida:["litro"],cantidad:100,precio:15,costo:5,categorias:["papeleria","farmacia"]
+},
+{Codigo:102,Nombre_prod:"sombrilla",Unidad_medida:["piezas"],cantidad:10,precio:250,costo:100,categorias:["deportes","jardineria"]
+},
+{Codigo:103,Nombre_prod:"papel",Unidad_medida:["kilogramo"],cantidad:60,precio:25,costo:10,categorias:["papeleria","abarrotes"]
+},
+{Codigo:104,Nombre_prod:"pantalla",Unidad_medida:["piezas"],cantidad:15,precio:10000,costo:8000,categorias:["papeleria","farmacia","deportes"]
+},
+{Codigo:105,Nombre_prod:"silla",Unidad_medida:["piezas"],cantidad:20,precio:100,costo:70,categorias:["papeleria","jardineria","abarrotes","deportes"]
+},
+{Codigo:106,Nombre_prod:"bloqueador",Unidad_medida:["litros"],cantidad:60,precio:150,costo:90,categorias:["farmacia","jardineria","deportes"]
+},
+{Codigo:107,Nombre_prod:"gel",Unidad_medida:["litros"],cantidad:20,precio:30,costo:20,categorias:["farmacia"]
+},
+{Codigo:108,Nombre_prod:"sombrero",Unidad_medida:["piezas"],cantidad:10,precio:70,costo:30,categorias:["deportes","jardineria"]
+},
+{Codigo:109,Nombre_prod:"calzado",Unidad_medida:["piezas"],cantidad:50,precio:500,costo:300,categorias:["deportes","jardineria"]
+}]
+
+3---- db.almacen.find({cantidad:{$gt:10}},{Nombre_prod:1});
+db.almacen.find({cantidad:10},{Nombre_prod:1});
+
+
+4---- db.almacen.find({cantidad:{$gt:4}},{Nombre_prod:1});
+
+5---- db.almacen.find({$and:[{cantidad:{$gt:4}},{cantidad:{$lt:21}}]},{Nombre_prod:1})
+
+7---- db.almacen.find({cantidad:10},{Nombre_prod:1}).sort({Nombre_prod:1});
+
+8---- db.almacen.find({$and:[{cantidad:10},{costo:{$gte:100}}]},{Nombre_prod:1})
+
+9---- db.almacen.find({categorias:{$all:["farmacia","papeleria"]}},{Nombre_prod:1});
+
+10--- db.almacen.find({Unidad_medida:{$in:["piezas","kilogramos"]}},{_id:0,Nombre_prod:1});
+

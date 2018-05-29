@@ -1,0 +1,13 @@
+db.productos.insert({_id:1,upc:"abc",cantidad:10,descripcion:{ordenes:2,valor:3.5}});
+//se puede sobreescribir el object id con un valor que queramos al especificar _id
+db.productos.find().pretty()
+
+db.productos.update({upc:"abc"},{$inc:{cantidad:-2,"descripcion.ordenes":1}})
+//con el incremento va a sumar -2 en cantidad y 1 en descripcion.ordenes
+
+db.productos.update({upc:"abc"},{$inc:{"descripcion.valor":2}})
+
+db.estudiante.insert([{_id:1,evaluaciones:[{tipo:"quiz",preguntas:[10,8,5]},{tipo:"exa",preguntas:[8,9,8]},{tipo:"test",preguntas:[5,4,3]}]}]);
+
+db.estudiante.update({},{$inc:{"evaluaciones.$[].preguntas.$[score]":2}},{arrayFilters:[{"score":{$gte:8}}],multi:true});
+//manipular a partir de una clave y modificar conforme a un parametro, hacia abajo y a los lados
