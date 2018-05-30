@@ -11,3 +11,11 @@ db.estudiante.insert([{_id:1,evaluaciones:[{tipo:"quiz",preguntas:[10,8,5]},{tip
 
 db.estudiante.update({},{$inc:{"evaluaciones.$[].preguntas.$[score]":2}},{arrayFilters:[{"score":{$gte:8}}],multi:true});
 //manipular a partir de una clave y modificar conforme a un parametro, hacia abajo y a los lados
+
+db.alumno.findAndModify({query:{nombre:"paco"},update:{$inc:{edad:5}},upsert:true})
+//busca y modifica los valores especificados
+//upsert es para hacer los cambios en base a la busqueda
+
+db.alumno.insert({nombre:"john",edad:15,cuenta:5});
+
+db.alumno.findAndModify({query:{nombre:"john"},update:{$inc:{edad:10,cuenta:10}},upsert:true})
